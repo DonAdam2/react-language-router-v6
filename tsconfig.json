@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "@/jest/*": [ "./jest/*"],
+      "@/ts/*": ["./src/ts/*"],
+      "@/scss/*": ["./src/scss/*"],
+      "@/img/*": ["./src/assets/images"]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

@@ -1,0 +1,78 @@
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+// lodash
+/*import { cloneDeep } from 'lodash';
+
+interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
+	retryTimes?: number;
+}*/
+
+const createNewBaseUrl = (url: string | undefined) =>
+	axios.create({
+		baseURL: url,
+	});
+
+const apiService = createNewBaseUrl(process.env.BASE_URL);
+
+const requestInterceptor = (config: AxiosRequestConfig) => {
+	return config;
+};
+
+const requestInterceptorError = (error: AxiosError): Promise<AxiosError> => {
+	console.error(`[request error] [${JSON.stringify(error)}]`);
+	return Promise.reject(error);
+};
+
+const responseInterceptor = (response: AxiosResponse) => {
+	// console.info(`[response] [${JSON.stringify(response)}]`);
+	return response;
+};
+
+// delay the required request using the given time
+/*const delayRequest = ({
+	delay,
+	originalRequest,
+}: {
+	delay: number;
+	originalRequest: AxiosRequestConfig;
+}) =>
+	new Promise((resolve) => {
+		setTimeout(() => resolve(apiService(originalRequest)), delay);
+	});*/
+
+const responseInterceptorError = (error: AxiosError) => {
+	console.log('response interceptor error:', error.response);
+
+	/*if (response?.status === 401) {
+		// handle authorization error
+	}*/
+
+	// handle internal server error by adding a retry
+	// logic after the given delay for the given retry times
+	/*if (error.response?.status === 500) {
+		const clonedConfig = cloneDeep(error.config) as ExtendedAxiosRequestConfig;
+		let retryTimes;
+		if (clonedConfig.retryTimes === undefined) {
+			// it should be (required retry times - 1)
+			// (eg: if required retry times is 5 then retryTimes = 4)
+			retryTimes = 4;
+		} else if (clonedConfig.retryTimes > 0) {
+			retryTimes = clonedConfig.retryTimes - 1;
+		}
+
+		if (retryTimes !== undefined) {
+			clonedConfig.retryTimes = retryTimes;
+			return delayRequest({ delay: 5000, originalRequest: clonedConfig });
+		}
+	}*/
+
+	return Promise.reject(error);
+};
+
+const addInterceptors = (axiosInstance: AxiosInstance) => {
+	axiosInstance.interceptors.request.use(requestInterceptor, requestInterceptorError);
+	axiosInstance.interceptors.response.use(responseInterceptor, responseInterceptorError);
+};
+
+addInterceptors(apiService);
+
+export { apiService };
