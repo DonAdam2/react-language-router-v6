@@ -12,6 +12,15 @@ import configureStore from './ts/store/configureStore';
 import App from './App';
 //styles
 import './scss/global.scss';
+//translations
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { setTranslations, setDefaultLanguage } from 'react-switch-lang';
+import en from './ts/translations/en.json';
+import ar from './ts/translations/ar.json';
+
+setTranslations({ en, ar });
+setDefaultLanguage('en');
 
 const store = configureStore(),
   container = document.getElementById('root'),
