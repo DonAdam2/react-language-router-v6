@@ -8,8 +8,6 @@ import './assets/images/metaImage.jpg';
 import 'regenerator-runtime/runtime';
 //store configuration
 import configureStore from './ts/store/configureStore';
-//root component
-import App from './App';
 //styles
 import './scss/global.scss';
 //translations
@@ -18,6 +16,8 @@ import './scss/global.scss';
 import { setTranslations, setDefaultLanguage } from 'react-switch-lang';
 import en from './ts/translations/en.json';
 import ar from './ts/translations/ar.json';
+//language router
+import LangRouter from '@/ts/routing/LangRouter';
 
 setTranslations({ en, ar });
 setDefaultLanguage('en');
@@ -30,7 +30,7 @@ root.render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <LangRouter />
       </BrowserRouter>
     </Provider>
   </StrictMode>

@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 //routes
 import { getLoginPageUrl } from '../routingConstants/AppUrls';
@@ -8,12 +9,15 @@ import { isAuthenticated } from '@/ts/constants/Helpers';
 //components
 import PermissionsCannotAccess from '../routingComponents/PermissionsCannotAccess';
 import RestrictedWrapper from '@/ts/routing/routingComponents/RestrictedWrapper';
+//contexts
+import { LocaleContext } from '@/ts/routing/LangRouter';
 
 const RestrictedRoute = ({
   children,
   requiredPermissions,
 }: RestrictedRouteInterface): JSX.Element => {
-  const location = useLocation();
+  const location = useLocation(),
+    { locale } = useContext(LocaleContext);
 
   if (isAuthenticated()) {
     return (
@@ -27,7 +31,7 @@ const RestrictedRoute = ({
       </RestrictedWrapper>
     );
   } else {
-    return <Navigate replace to={getLoginPageUrl()} state={{ from: location }} />;
+    return <Navigate replace to={getLoginPageUrl(locale)} state={{ from: location }} />;
   }
 };
 

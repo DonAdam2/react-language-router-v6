@@ -20,27 +20,29 @@ import {
   getHomePageUrl,
   getLoginPageUrl,
 } from '@/ts/routing/routingConstants/AppUrls';
+//interfaces
+import { PublicRouteInterface } from '@/ts/routing/RoutingInterfaces';
 
-export const publicRoutes = [
+export const publicRoutes: PublicRouteInterface[] = [
   {
     restricted: true,
     element: <LoginPage />,
-    path: getLoginPageUrl(),
+    path: (locale: string) => getLoginPageUrl(locale),
   },
   {
     element: <AboutUsPage />,
-    path: getAboutUsPageUrl(),
+    path: (locale: string) => getAboutUsPageUrl(locale),
   },
   {
     element: <ContactUsPage />,
-    path: getContactUsPageUrl(),
+    path: (locale: string) => getContactUsPageUrl(locale),
   },
 ];
 
 export const deliveryAddressRoutes = [
   {
     element: <AddDeliveryAddressPage />,
-    path: getAddDeliveryAddressPageUrl(),
+    path: (locale: string) => getAddDeliveryAddressPageUrl(locale),
     label: 'Add delivery address',
   },
 ];
@@ -48,23 +50,23 @@ export const deliveryAddressRoutes = [
 export const privateRoutes = [
   {
     element: <HomePage />,
-    path: getHomePageUrl(),
+    path: (locale: string) => getHomePageUrl(locale),
   },
   {
     element: <DeliveryTimePage />,
-    path: getDeliveryTimePageUrl(),
+    path: (locale: string) => getDeliveryTimePageUrl(locale),
   },
   {
     element: <DeliveryAddressPage />,
-    path: getDeliveryAddressPageUrl(),
+    path: (locale: string) => getDeliveryAddressPageUrl(locale),
     children: deliveryAddressRoutes,
   },
   {
     element: <EditCardMessagePage />,
-    path: getEditCardMessagePageUrl(),
+    path: (locale: string) => getEditCardMessagePageUrl(locale),
   },
   {
     element: <CustomCarePage />,
-    path: getCustomerCarePageUrl(),
+    path: (locale: string) => getCustomerCarePageUrl(locale),
   },
 ];
