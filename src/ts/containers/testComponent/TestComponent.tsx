@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 //selectors
 import { getTestAction } from '@/ts/store/app/selectors/AppSelectors';
 //actions
 import { setTestAction } from '@/ts/store/app/actions/AppActions';
 //state
-import { State } from '@/ts/store/rootReducer';
+import { useAppSelector } from '@/ts/store/rootReducer';
 
 const TestComponent = () => {
   const dispatch = useDispatch(),
-    testAction = useSelector((state: State) => getTestAction(state));
+    testAction = useAppSelector((state) => getTestAction(state));
 
   return (
     <div className="container">
