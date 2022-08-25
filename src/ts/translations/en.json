@@ -1,5 +1,33 @@
 {
+  "aboutUsPage": {
+    "title": "About us page"
+  },
+  "addDeliveryAddress": {
+    "title": "Add delivery address page"
+  },
+  "contactUsPage": {
+    "title": "Contact us page"
+  },
+  "customerCare": {
+    "title": "Customer care page."
+  },
+  "deliveryAddress": {
+    "addDeliveryAddress": "Add delivery address",
+    "title": "Delivery address page."
+  },
+  "deliveryTime": {
+    "title": "Delivery time page."
+  },
+  "editCardMessage": {
+    "title": "Edit card message page."
+  },
+  "homePage": {
+    "title": "Home page"
+  },
   "loginPage": {
     "title": "Login page"
+  },
+  "notFound": {
+    "title": "404 Page not found."
   }
 }

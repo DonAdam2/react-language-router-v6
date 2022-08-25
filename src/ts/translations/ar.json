@@ -1,5 +1,33 @@
 {
+  "aboutUsPage": {
+    "title": "صفحة حولنا"
+  },
+  "addDeliveryAddress": {
+    "title": "صفحة أضف عنوان التسليم"
+  },
+  "contactUsPage": {
+    "title": "صفحة اتصل بنا"
+  },
+  "customerCare": {
+    "title": "صفحة رعاية العميل."
+  },
+  "deliveryAddress": {
+    "addDeliveryAddress": "أضف عنوان تسليم",
+    "title": "صفحة عنوان التسليم."
+  },
+  "deliveryTime": {
+    "title": "صفحة موعد التسليم."
+  },
+  "editCardMessage": {
+    "title": "صفحة تحرير رسالة البطاقة."
+  },
+  "homePage": {
+    "title": "الصفحة الرئيسية"
+  },
   "loginPage": {
     "title": "صفحة تسجيل الدخول"
+  },
+  "notFound": {
+    "title": "404 الصفحة غير موجودة."
   }
 }

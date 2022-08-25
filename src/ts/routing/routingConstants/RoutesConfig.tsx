@@ -70,3 +70,42 @@ export const privateRoutes = [
     path: (locale: string) => getCustomerCarePageUrl(locale),
   },
 ];
+
+export const headerPublicRoutes = [
+  {
+    label: 'About us',
+    path: (locale: string) => getAboutUsPageUrl(locale),
+  },
+  {
+    label: 'Contact us',
+    path: (locale: string) => getContactUsPageUrl(locale),
+  },
+];
+export const headerPrivateRoutes = [
+  {
+    label: 'Home',
+    path: (locale: string) => getHomePageUrl(locale),
+  },
+  {
+    label: 'Delivery time',
+    path: (locale: string) => getDeliveryTimePageUrl(locale),
+  },
+  {
+    label: 'Delivery address',
+    path: (locale: string) => getDeliveryAddressPageUrl(locale),
+  },
+  {
+    label: 'Edit card',
+    path: (locale: string) => getEditCardMessagePageUrl(locale),
+  },
+  {
+    label: 'Customer care',
+    path: (locale: string) => getCustomerCarePageUrl(locale),
+  },
+];
+export const headerAuthRoutes = [
+  {
+    label: 'Login',
+    path: (locale: string) => getLoginPageUrl(locale),
+  },
+];
