@@ -4,6 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import ErrorBoundaryFallback from './ts/generic/ErrorBoundaryFallback';
 //components
 import { Outlet } from 'react-router-dom';
+import Header from '@/ts/containers/header/Header';
 
 const App = () => (
   <ErrorBoundary
@@ -13,6 +14,7 @@ const App = () => (
       console.log('Try again clicked');
     }}
   >
+    <Header />
     <Outlet />
   </ErrorBoundary>
 );
