@@ -12,7 +12,7 @@ import RestrictedWrapper from '@/ts/routing/routingComponents/RestrictedWrapper'
 //contexts
 import { LocaleContext } from '@/ts/routing/LangRouter';
 
-const RestrictedRoute = ({
+const RestrictedRouteGuard = ({
   children,
   requiredPermissions,
 }: RestrictedRouteInterface): JSX.Element => {
@@ -35,4 +35,4 @@ const RestrictedRoute = ({
   }
 };
 
-export default RestrictedRoute;
+export default RestrictedRouteGuard;
