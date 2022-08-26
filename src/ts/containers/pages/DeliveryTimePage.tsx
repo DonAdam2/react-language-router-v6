@@ -1,11 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { translate } from 'react-switch-lang';
-//interfaces
-import { PageInterface } from '@/ts/interfaces/PageInterface';
+import { useTranslation } from 'react-i18next';
 
-const DeliveryTimePage = ({ t }: PageInterface) => {
+const DeliveryTimePage = () => {
+  const { t } = useTranslation();
+
   return <div>{t('deliveryTime.title')}</div>;
 };
 
-export default translate(DeliveryTimePage);
+export default DeliveryTimePage;

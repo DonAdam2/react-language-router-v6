@@ -1,9 +1,7 @@
 import { createContext, useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-//translation
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { setLanguage, translate } from 'react-switch-lang';
+import { useTranslation } from 'react-i18next';
+//constants
 import { isAuthenticated } from '@/ts/constants/Helpers';
 //routing helpers
 import { getDefaultLanguage } from '@/ts/routing/routingConstants/RoutingHelpers';
@@ -28,7 +26,8 @@ export const LocaleContext = createContext({
 });
 
 const LangRouter = () => {
-  const { pathname, search, hash } = useLocation(),
+  const { i18n } = useTranslation(),
+    { pathname, search, hash } = useLocation(),
     navigate = useNavigate(),
     availableLocales = ['en', 'ar'],
     defaultLocale = (
@@ -68,7 +67,11 @@ const LangRouter = () => {
   }, [locale]);
 
   const setLanguageHandler = (lang: string) => {
-    setLanguage(lang);
+    if (lang === 'en') {
+      i18n.changeLanguage('en-US');
+    } else {
+      i18n.changeLanguage('ar-SA');
+    }
   };
 
   const updateLocale = (newLocale: string) => {
@@ -144,4 +147,4 @@ const LangRouter = () => {
   );
 };
 
-export default translate(LangRouter);
+export default LangRouter;

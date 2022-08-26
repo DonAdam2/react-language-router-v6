@@ -2,7 +2,7 @@
 
 - The main purpose of this project is to create a localized react router. 
 - It shows you how to utilize route guards
-- It uses [react-switch-lang](https://www.npmjs.com/package/react-switch-lang) package for translation (it can be replaced with the desired package as [react-i18next](https://www.npmjs.com/package/react-i18next))
+- It uses [react-i18next](https://www.npmjs.com/package/react-i18next) package for translation
 
 ## It has the following route guards:
 

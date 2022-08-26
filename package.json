@@ -117,11 +117,13 @@
   "dependencies": {
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
+    "i18next": "^21.9.1",
+    "i18next-browser-languagedetector": "^6.1.5",
     "lodash": "^4.17.21",
     "react-error-boundary": "^3.1.4",
+    "react-i18next": "^11.18.5",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
-    "react-switch-lang": "^1.0.2",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1"
   }

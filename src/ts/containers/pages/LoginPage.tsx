@@ -1,8 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { translate } from 'react-switch-lang';
+import { useTranslation } from 'react-i18next';
 //managers
 import LocalStorageManager from '@/ts/managers/LocalStorageManger';
 //constants
@@ -11,11 +9,10 @@ import { LocalStorageKeys } from '@/ts/constants/Constants';
 import { getHomePageUrl } from '@/ts/routing/routingConstants/AppUrls';
 //contexts
 import { LocaleContext } from '@/ts/routing/LangRouter';
-//interfaces
-import { PageInterface } from '@/ts/interfaces/PageInterface';
 
-const LoginPage = ({ t }: PageInterface) => {
-  const navigate = useNavigate(),
+const LoginPage = () => {
+  const { t } = useTranslation(),
+    navigate = useNavigate(),
     { locale } = useContext(LocaleContext);
 
   const loginHandler = () => {
@@ -31,4 +28,4 @@ const LoginPage = ({ t }: PageInterface) => {
   );
 };
 
-export default translate(LoginPage);
+export default LoginPage;

@@ -1,17 +1,14 @@
 import { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { translate } from 'react-switch-lang';
-//interfaces
-import { PageInterface } from '@/ts/interfaces/PageInterface';
+import { useTranslation } from 'react-i18next';
 //contexts
 import { LocaleContext } from '@/ts/routing/LangRouter';
 //routes
 import { getAddDeliveryAddressPageUrl } from '@/ts/routing/routingConstants/AppUrls';
 
-const DeliveryAddressPage = ({ t }: PageInterface) => {
-  const { locale } = useContext(LocaleContext);
+const DeliveryAddressPage = () => {
+  const { t } = useTranslation(),
+    { locale } = useContext(LocaleContext);
 
   return (
     <div>
@@ -26,4 +23,4 @@ const DeliveryAddressPage = ({ t }: PageInterface) => {
   );
 };
 
-export default translate(DeliveryAddressPage);
+export default DeliveryAddressPage;

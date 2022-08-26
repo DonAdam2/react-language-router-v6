@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { I18nextProvider } from 'react-i18next';
 //import meta image
 import './assets/images/metaImage.jpg';
 // required for babel polyfills
@@ -10,17 +11,10 @@ import 'regenerator-runtime/runtime';
 import configureStore from './ts/store/configureStore';
 //styles
 import './scss/global.scss';
-//translations
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { setTranslations, setDefaultLanguage } from 'react-switch-lang';
-import en from './ts/translations/en.json';
-import ar from './ts/translations/ar.json';
+//translation setup
+import i18n from './i18n';
 //language router
 import LangRouter from '@/ts/routing/LangRouter';
-
-setTranslations({ en, ar });
-setDefaultLanguage('en');
 
 const store = configureStore(),
   container = document.getElementById('root'),
@@ -30,7 +24,9 @@ root.render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <LangRouter />
+        <I18nextProvider i18n={i18n}>
+          <LangRouter />
+        </I18nextProvider>
       </BrowserRouter>
     </Provider>
   </StrictMode>

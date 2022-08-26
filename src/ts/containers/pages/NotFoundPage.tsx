@@ -1,11 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { translate } from 'react-switch-lang';
-//interfaces
-import { PageInterface } from '@/ts/interfaces/PageInterface';
+import { useTranslation } from 'react-i18next';
 
-const NotFoundPage = ({ t }: PageInterface) => {
+const NotFoundPage = () => {
+  const { t } = useTranslation();
+
   return <div>{t('notFound.title')}</div>;
 };
 
-export default translate(NotFoundPage);
+export default NotFoundPage;
