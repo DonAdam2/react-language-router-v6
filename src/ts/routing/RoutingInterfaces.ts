@@ -21,3 +21,9 @@ export interface PublicRouteInterface {
   element: JSX.Element;
   path: (locale: string) => string;
 }
+
+export interface HeaderRouteInterface {
+  label: string;
+  path: (locale: string) => string;
+  permissions?: string | string[];
+}

@@ -13,6 +13,7 @@ import { privateRoutes, publicRoutes } from '@/ts/routing/routingConstants/Route
 //route guards
 import PublicRouteGuard from '@/ts/routing/guards/PublicRouteGuard';
 import PrivateRouteGuard from '@/ts/routing/guards/PrivateRouteGuard';
+import RistrictedRouteGuard from '@/ts/routing/guards/RistrictedRouteGuard';
 //root component
 import App from '../../App';
 //pages
@@ -120,7 +121,15 @@ const LangRouter = () => {
             <Route
               key={i}
               path={el.path(locale)}
-              element={<PrivateRouteGuard>{el.element}</PrivateRouteGuard>}
+              element={
+                el.permissions ? (
+                  <RistrictedRouteGuard requiredPermissions={el.permissions}>
+                    {el.element}
+                  </RistrictedRouteGuard>
+                ) : (
+                  <PrivateRouteGuard>{el.element}</PrivateRouteGuard>
+                )
+              }
             >
               {el.children &&
                 el.children.map((innerEl, innerI) => (

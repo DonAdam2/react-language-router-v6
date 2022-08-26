@@ -21,7 +21,7 @@ import {
   getLoginPageUrl,
 } from '@/ts/routing/routingConstants/AppUrls';
 //interfaces
-import { PublicRouteInterface } from '@/ts/routing/RoutingInterfaces';
+import { HeaderRouteInterface, PublicRouteInterface } from '@/ts/routing/RoutingInterfaces';
 
 export const publicRoutes: PublicRouteInterface[] = [
   {
@@ -68,10 +68,11 @@ export const privateRoutes = [
   {
     element: <CustomCarePage />,
     path: (locale: string) => getCustomerCarePageUrl(locale),
+    permissions: 'customerCare',
   },
 ];
 
-export const headerPublicRoutes = [
+export const headerPublicRoutes: HeaderRouteInterface[] = [
   {
     label: 'About us',
     path: (locale: string) => getAboutUsPageUrl(locale),
@@ -81,7 +82,8 @@ export const headerPublicRoutes = [
     path: (locale: string) => getContactUsPageUrl(locale),
   },
 ];
-export const headerPrivateRoutes = [
+
+export const headerPrivateRoutes: HeaderRouteInterface[] = [
   {
     label: 'Home',
     path: (locale: string) => getHomePageUrl(locale),
@@ -101,9 +103,11 @@ export const headerPrivateRoutes = [
   {
     label: 'Customer care',
     path: (locale: string) => getCustomerCarePageUrl(locale),
+    permissions: 'customerCare',
   },
 ];
-export const headerAuthRoutes = [
+
+export const headerAuthRoutes: HeaderRouteInterface[] = [
   {
     label: 'Login',
     path: (locale: string) => getLoginPageUrl(locale),

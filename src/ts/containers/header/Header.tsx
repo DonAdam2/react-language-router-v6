@@ -1,5 +1,4 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
-//contexts
 import { NavLink, useNavigate } from 'react-router-dom';
 //contexts
 import { LocaleContext } from '@/ts/routing/LangRouter';
@@ -13,8 +12,12 @@ import {
   headerPublicRoutes,
 } from '@/ts/routing/routingConstants/RoutesConfig';
 import { getLoginPageUrl } from '@/ts/routing/routingConstants/AppUrls';
+//routing components
+import RestrictedSection from '@/ts/routing/routingComponents/RestrictedSection';
 //managers
 import LocalStorageManager from '@/ts/managers/LocalStorageManger';
+//interfaces
+import { HeaderRouteInterface } from '@/ts/routing/RoutingInterfaces';
 
 const Header = () => {
   const { locale, setLocale } = useContext(LocaleContext),
@@ -30,16 +33,41 @@ const Header = () => {
     setLang(value);
   };
 
-  const renderLink = (list: { path: (locale: string) => string; label: string }[]) => {
-    return list.map((el, i) => (
+  const renderLink = ({
+    to,
+    label,
+    key,
+    permissions,
+  }: {
+    to: string;
+    label: string;
+    key: number;
+    permissions?: string | string[];
+  }) => {
+    const link = (
       <NavLink
-        key={i}
-        to={el.path(locale)}
+        key={permissions ? undefined : key}
+        to={to}
         className={(navData) => (navData.isActive ? 'active' : '')}
       >
-        {el.label}
+        {label}
       </NavLink>
-    ));
+    );
+    if (permissions) {
+      return (
+        <RestrictedSection key={key} requiredPermissions={permissions}>
+          {link}
+        </RestrictedSection>
+      );
+    }
+
+    return link;
+  };
+
+  const renderLinks = (list: { path: (locale: string) => string; label: string }[]) => {
+    return list.map((el: HeaderRouteInterface, i) =>
+      renderLink({ to: el.path(locale), label: el.label, key: i, permissions: el.permissions })
+    );
   };
 
   const logoutHandler = () => {
@@ -50,8 +78,8 @@ const Header = () => {
   return (
     <div className="header-wrapper">
       <div>
-        {isAuthenticated() ? renderLink(headerPrivateRoutes) : renderLink(headerAuthRoutes)}
-        {renderLink(headerPublicRoutes)}
+        {isAuthenticated() ? renderLinks(headerPrivateRoutes) : renderLinks(headerAuthRoutes)}
+        {renderLinks(headerPublicRoutes)}
       </div>
       <div>
         {isAuthenticated() && (
