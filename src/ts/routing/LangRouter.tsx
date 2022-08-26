@@ -55,10 +55,10 @@ const LangRouter = () => {
   }, [pathname]);
 
   useEffect(() => {
-    let lang = defaultLocale.substring(0, 2);
+    let lang = defaultLocale;
 
     if (availableLocales.includes(pathnameLocale)) {
-      lang = pathnameLocale.substring(0, 2);
+      lang = pathnameLocale;
       setLanguageHandler(lang);
     } else if (pathname === '/') {
       setLanguageHandler(lang);
