@@ -1,19 +1,15 @@
-## This webpack (V5.74.0) boilerplate supports the following:
+## Custom language router (react router dom v6):
 
-- Testing using **jest**, **react-testing-library**
-- **SCSS** preprocessor
-- To enable **CSS modules** (each component has its own styles "no conflict between different components styles") => just open `/buildTools/constants.js` and set **isCssModules** to **true**. Then in every component add the required import as follows: `import classes from './scss/requiredStyles'`
-- Autoprefixer for CSS (it supports IE >= 11)
-- Hot reloading for **JS** & **CSS** and **redux** store (in development)
-- Prettier (for code format)
-- Docker setup for development
+- The main purpose of this project is to create a localized react router. 
+- It shows you how to utilize route guards
+- It uses [react-switch-lang](https://www.npmjs.com/package/react-switch-lang) package for translation (it can be replaced with the desired package as [react-i18next](https://www.npmjs.com/package/react-i18next))
 
-## It has the following configuration for React:
+## It has the following route guards:
 
-- React router dom
-- Redux & Redux thunk & & Redux logger & Redux devTool
-- Prop types
-- 2 environments {production: .env, development: .env.development}
+- Private route guard => protect the given route based on a token.
+- Public route guard => used for public routes and authentication routes (ex: login, signup, ...etc) {if authenticated it will redirect the user to the home page}
+- Restricted route guard => protect the given route based on a token, and a list of permissions (can be an array or a string).
+- Restricted section => protect the given section based on a list of permissions (can be an array or a string).
 
 ## It has the following mocks for Jest:
 
@@ -84,9 +80,6 @@ This build relies on [Prettier formatter](https://prettier.io/) to enforce a cod
 
 ## Extra:
 
-- Private route guard => protect the given route based on a token.
-- Restricted route guard => protect the given route based on a token, and a list of permissions (can be an array or a string).
-- Restricted section => protect the given section based on a list of permissions (can be an array or a string).
 - Generic error boundary fallback component (you can customize it)
 - Cookies, local storage and sessions storage mangers to store data in the browser. (**Note:** the data encrypted using crypto-js package before storing it.)
 - Basic mixins `(scss/generic/_mixins.scss)`
