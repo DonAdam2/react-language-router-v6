@@ -7,11 +7,7 @@ import { isAuthenticated } from '@/ts/constants/Helpers';
 import { getDefaultLanguage } from '@/ts/routing/routingConstants/RoutingHelpers';
 //routes
 import { getHomePageUrl, getLoginPageUrl } from '@/ts/routing/routingConstants/AppUrls';
-import { privateRoutes, publicRoutes } from '@/ts/routing/routingConstants/RoutesConfig';
-//route guards
-import PublicRouteGuard from '@/ts/routing/guards/PublicRouteGuard';
-import PrivateRouteGuard from '@/ts/routing/guards/PrivateRouteGuard';
-import RestrictedRouteGuard from '@/ts/routing/guards/RestrictedRouteGuard';
+import { allRoutes } from '@/ts/routing/routingConstants/RoutesConfig';
 //root component
 import App from '../../App';
 //pages
@@ -105,38 +101,15 @@ const LangRouter = () => {
     <LocaleContext.Provider value={{ locale, setLocale: updateLocale }}>
       <Routes>
         <Route path={`/${locale}`} element={<App />}>
-          {publicRoutes.map((el, i) => (
-            <Route
-              key={i}
-              path={el.path(locale)}
-              element={
-                <PublicRouteGuard
-                  restricted={el.restricted}
-                  redirect={el.redirect ? el.redirect(locale) : undefined}
-                >
-                  {el.element}
-                </PublicRouteGuard>
-              }
-            />
-          ))}
-
-          {privateRoutes.map((el, i) => (
-            <Route
-              key={i}
-              path={el.path(locale)}
-              element={
-                el.permissions ? (
-                  <RestrictedRouteGuard requiredPermissions={el.permissions}>
-                    {el.element}
-                  </RestrictedRouteGuard>
-                ) : (
-                  <PrivateRouteGuard>{el.element}</PrivateRouteGuard>
-                )
-              }
-            >
-              {el.children &&
-                el.children.map((innerEl, innerI) => (
-                  <Route key={innerI} path={innerEl.path(locale)} element={innerEl.element} />
+          {allRoutes.map((route, routeIndex) => (
+            <Route key={routeIndex} path={route.path(locale)} element={route.element}>
+              {route.children &&
+                route.children.map((childRoute, childIndex) => (
+                  <Route
+                    key={childIndex}
+                    path={childRoute.path(locale)}
+                    element={childRoute.element}
+                  />
                 ))}
             </Route>
           ))}

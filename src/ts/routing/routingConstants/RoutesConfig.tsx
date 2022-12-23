@@ -21,56 +21,95 @@ import {
   getLoginPageUrl,
 } from '@/ts/routing/routingConstants/AppUrls';
 //interfaces
-import { HeaderRouteInterface, PublicRouteInterface } from '@/ts/routing/RoutingInterfaces';
+import { HeaderRouteInterface, RouteWithChildrenInterface } from '@/ts/routing/RoutingInterfaces';
+import PublicRouteGuard from '@/ts/routing/guards/PublicRouteGuard';
+import PrivateRouteGuard from '@/ts/routing/guards/PrivateRouteGuard';
+import RestrictedRouteGuard from '../guards/RestrictedRouteGuard';
 
-export const publicRoutes: PublicRouteInterface[] = [
+const publicRoutes: RouteWithChildrenInterface[] = [
   {
-    restricted: true,
-    element: <LoginPage />,
+    element: (
+      <PublicRouteGuard restricted>
+        <LoginPage />
+      </PublicRouteGuard>
+    ),
     path: (locale: string) => getLoginPageUrl(locale),
   },
   {
-    element: <AboutUsPage />,
+    element: (
+      <PublicRouteGuard>
+        <AboutUsPage />
+      </PublicRouteGuard>
+    ),
     path: (locale: string) => getAboutUsPageUrl(locale),
   },
   {
-    element: <ContactUsPage />,
+    element: (
+      <PublicRouteGuard>
+        <ContactUsPage />
+      </PublicRouteGuard>
+    ),
     path: (locale: string) => getContactUsPageUrl(locale),
   },
 ];
 
-export const deliveryAddressRoutes = [
+const deliveryAddressRoutes: RouteWithChildrenInterface[] = [
   {
-    element: <AddDeliveryAddressPage />,
+    element: (
+      <PrivateRouteGuard>
+        <AddDeliveryAddressPage />
+      </PrivateRouteGuard>
+    ),
     path: (locale: string) => getAddDeliveryAddressPageUrl(locale),
     label: 'Add delivery address',
   },
 ];
 
-export const privateRoutes = [
+const privateRoutes: RouteWithChildrenInterface[] = [
   {
-    element: <HomePage />,
+    element: (
+      <PrivateRouteGuard>
+        <HomePage />
+      </PrivateRouteGuard>
+    ),
     path: (locale: string) => getHomePageUrl(locale),
   },
   {
-    element: <DeliveryTimePage />,
+    element: (
+      <PrivateRouteGuard>
+        <DeliveryTimePage />
+      </PrivateRouteGuard>
+    ),
     path: (locale: string) => getDeliveryTimePageUrl(locale),
   },
   {
-    element: <DeliveryAddressPage />,
+    element: (
+      <PrivateRouteGuard>
+        <DeliveryAddressPage />
+      </PrivateRouteGuard>
+    ),
     path: (locale: string) => getDeliveryAddressPageUrl(locale),
     children: deliveryAddressRoutes,
   },
   {
-    element: <EditCardMessagePage />,
+    element: (
+      <PrivateRouteGuard>
+        <EditCardMessagePage />
+      </PrivateRouteGuard>
+    ),
     path: (locale: string) => getEditCardMessagePageUrl(locale),
   },
   {
-    element: <CustomCarePage />,
+    element: (
+      <RestrictedRouteGuard requiredPermissions="customerCare">
+        <CustomCarePage />
+      </RestrictedRouteGuard>
+    ),
     path: (locale: string) => getCustomerCarePageUrl(locale),
-    permissions: 'customerCare',
   },
 ];
+
+export const allRoutes = [...publicRoutes, ...privateRoutes];
 
 export const headerPublicRoutes: HeaderRouteInterface[] = [
   {

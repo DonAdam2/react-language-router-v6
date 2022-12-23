@@ -1,5 +1,15 @@
 import { ReactNode } from 'react';
 
+interface RouteInterface {
+  element: any;
+  path: (locale: string) => string;
+  label?: string;
+}
+
+export interface RouteWithChildrenInterface extends RouteInterface {
+  children?: RouteWithChildrenInterface[];
+}
+
 export interface RestrictedRouteInterface {
   requiredPermissions: string[] | string;
   children?: ReactNode;
@@ -13,13 +23,6 @@ export interface PublicRouteGuardInterface {
   restricted?: boolean;
   children: ReactNode;
   redirect?: string;
-}
-
-export interface PublicRouteInterface {
-  restricted?: boolean;
-  redirect?: (locale: string) => string;
-  element: JSX.Element;
-  path: (locale: string) => string;
 }
 
 export interface HeaderRouteInterface {
