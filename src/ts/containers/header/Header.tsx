@@ -18,9 +18,11 @@ import RestrictedSection from '@/ts/routing/routingComponents/RestrictedSection'
 import LocalStorageManager from '@/ts/managers/LocalStorageManger';
 //interfaces
 import { HeaderRouteInterface } from '@/ts/routing/RoutingInterfaces';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
-  const { locale, setLocale } = useContext(LocaleContext),
+  const { t } = useTranslation(),
+    { locale, setLocale } = useContext(LocaleContext),
     navigate = useNavigate(),
     [lang, setLang] = useState(locale);
 
@@ -78,18 +80,18 @@ const Header = () => {
   return (
     <div className="header-wrapper">
       <div>
-        {isAuthenticated() ? renderLinks(headerPrivateRoutes) : renderLinks(headerAuthRoutes)}
-        {renderLinks(headerPublicRoutes)}
+        {isAuthenticated() ? renderLinks(headerPrivateRoutes(t)) : renderLinks(headerAuthRoutes(t))}
+        {renderLinks(headerPublicRoutes(t))}
       </div>
       <div>
         {isAuthenticated() && (
           <button onClick={logoutHandler} style={{ marginInlineEnd: 10 }}>
-            Logout
+            {t('header.logout')}
           </button>
         )}
         <select onChange={changeLanguageHandler} value={lang}>
-          <option value="en">EN</option>
-          <option value="ar">AR</option>
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
         </select>
       </div>
     </div>

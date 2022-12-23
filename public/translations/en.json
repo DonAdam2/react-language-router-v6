@@ -29,5 +29,21 @@
   },
   "notFound": {
     "title": "404 Page not found."
+  },
+  "noPermission": {
+    "title": "403 error",
+    "subtitle": "Unauthorized access!",
+    "description": "We are sorry but you don't have the required permission/s to access this page:"
+  },
+  "header": {
+    "logout": "Logout",
+    "home": "Home",
+    "deliveryTime": "Delivery time",
+    "deliveryAddress": "Delivery address",
+    "editCard": "Edit card",
+    "customerCare": "Customer care",
+    "login": "Login",
+    "aboutUs": "About us",
+    "contactUs": "Contact us"
   }
 }

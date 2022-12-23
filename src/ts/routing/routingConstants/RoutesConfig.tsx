@@ -25,6 +25,7 @@ import { HeaderRouteInterface, RouteWithChildrenInterface } from '@/ts/routing/R
 import PublicRouteGuard from '@/ts/routing/guards/PublicRouteGuard';
 import PrivateRouteGuard from '@/ts/routing/guards/PrivateRouteGuard';
 import RestrictedRouteGuard from '../guards/RestrictedRouteGuard';
+import { TFunction } from 'i18next';
 
 const publicRoutes: RouteWithChildrenInterface[] = [
   {
@@ -111,44 +112,44 @@ const privateRoutes: RouteWithChildrenInterface[] = [
 
 export const allRoutes = [...publicRoutes, ...privateRoutes];
 
-export const headerPublicRoutes: HeaderRouteInterface[] = [
+export const headerPublicRoutes = (t: TFunction): HeaderRouteInterface[] => [
   {
-    label: 'About us',
+    label: t('header.aboutUs'),
     path: (locale: string) => getAboutUsPageUrl(locale),
   },
   {
-    label: 'Contact us',
+    label: t('header.contactUs'),
     path: (locale: string) => getContactUsPageUrl(locale),
   },
 ];
 
-export const headerPrivateRoutes: HeaderRouteInterface[] = [
+export const headerPrivateRoutes = (t: TFunction): HeaderRouteInterface[] => [
   {
-    label: 'Home',
+    label: t('header.home'),
     path: (locale: string) => getHomePageUrl(locale),
   },
   {
-    label: 'Delivery time',
+    label: t('header.deliveryTime'),
     path: (locale: string) => getDeliveryTimePageUrl(locale),
   },
   {
-    label: 'Delivery address',
+    label: t('header.deliveryAddress'),
     path: (locale: string) => getDeliveryAddressPageUrl(locale),
   },
   {
-    label: 'Edit card',
+    label: t('header.editCard'),
     path: (locale: string) => getEditCardMessagePageUrl(locale),
   },
   {
-    label: 'Customer care',
+    label: t('header.customerCare'),
     path: (locale: string) => getCustomerCarePageUrl(locale),
     permissions: 'customerCare',
   },
 ];
 
-export const headerAuthRoutes: HeaderRouteInterface[] = [
+export const headerAuthRoutes = (t: TFunction): HeaderRouteInterface[] => [
   {
-    label: 'Login',
+    label: t('header.login'),
     path: (locale: string) => getLoginPageUrl(locale),
   },
 ];
