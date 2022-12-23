@@ -4,11 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 //import meta image
-import './assets/images/metaImage.jpg';
+import '@/public/assets/images/metaImage.jpg';
 // required for babel polyfills
 import 'regenerator-runtime/runtime';
 //store configuration
-import configureStore from './ts/store/configureStore';
+import store from '@/ts/store/store';
 //styles
 import './scss/global.scss';
 //translation setup
@@ -16,8 +16,7 @@ import i18n from './i18n';
 //language router
 import LangRouter from '@/ts/routing/LangRouter';
 
-const store = configureStore(),
-  container = document.getElementById('root'),
+const container = document.getElementById('root'),
   root = createRoot(container as Element);
 
 root.render(

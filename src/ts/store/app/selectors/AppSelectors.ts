@@ -1,4 +1,4 @@
-import { RootState } from '../../rootReducer';
+import { RootState } from '@/ts/store/store';
 
 export const getTestAction = (state: RootState) => state.app.testString;
 

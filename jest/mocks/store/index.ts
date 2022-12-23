@@ -1,9 +1,15 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { configureStore, PreloadedState } from '@reduxjs/toolkit';
 //root reducer
 import { rootReducer } from '@/ts/store/rootReducer';
-
-const composeEnhancers = compose;
+//root state
+import { RootState } from '@/ts/store/store';
 
 // Create a replica of the actual store without redux dev tools
-export default createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
+const setupStore = (preloadedState?: PreloadedState<RootState>) =>
+  configureStore({
+    reducer: rootReducer,
+    devTools: false,
+    preloadedState,
+  });
+
+export default setupStore;

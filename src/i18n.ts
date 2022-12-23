@@ -6,8 +6,8 @@ import LocalStorageManager from '@/ts/managers/LocalStorageManger';
 //constants
 import { LocalStorageKeys } from '@/ts/constants/Constants';
 //translations
-import translationAr from './ts/translations/ar.json';
-import translationEn from './ts/translations/en.json';
+import translationAr from '@/public/translations/ar.json';
+import translationEn from '@/public/translations/en.json';
 
 const resources = {
   en: {
