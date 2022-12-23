@@ -14,8 +14,10 @@ const App = () => (
       console.log('Try again clicked');
     }}
   >
-    <Header />
-    <Outlet />
+    <div className="container">
+      <Header />
+      <Outlet />
+    </div>
   </ErrorBoundary>
 );
 

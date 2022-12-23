@@ -10,7 +10,7 @@ const PermissionsCannotAccess = ({ requiredPermissions }: RestrictedRouteInterfa
       <h1>{t('noPermission.title')}</h1>
       <h3>{t('noPermission.subtitle')}</h3>
       <p>{t('noPermission.description')}</p>
-      <ul style={{ textAlign: 'start' }}>
+      <ul>
         {Array.isArray(requiredPermissions) ? (
           requiredPermissions.map((el, i) => <li key={i}>{el}</li>)
         ) : (
