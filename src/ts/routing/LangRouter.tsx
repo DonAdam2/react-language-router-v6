@@ -33,6 +33,8 @@ const LangRouter = () => {
     [locale, setLocale] = useState(defaultLocale),
     loaderTimerRef = useRef<any>(),
     [isLoading, setIsLoading] = useState(true);
+  //set body direction
+  document.body.dir = i18n.dir(i18n.language);
 
   useEffect(() => {
     loaderTimerRef.current = setTimeout(() => {
@@ -63,6 +65,9 @@ const LangRouter = () => {
   }, [locale]);
 
   const setLanguageHandler = (lang: string) => {
+    //set language attribute on HTML element
+    document.documentElement.setAttribute('lang', lang);
+
     if (lang === 'en') {
       i18n.changeLanguage('en-US');
     } else {
