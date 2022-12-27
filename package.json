@@ -116,11 +116,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
-    "axios": "^1.2.1",
     "crypto-js": "^4.1.1",
     "i18next": "^22.4.6",
     "i18next-browser-languagedetector": "^7.0.1",
-    "lodash": "^4.17.21",
     "react-error-boundary": "^3.1.4",
     "react-i18next": "^12.1.1",
     "react-redux": "^8.0.5",
