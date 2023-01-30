@@ -8,6 +8,7 @@ const path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
   EsLintPlugin = require('eslint-webpack-plugin'),
+  postcssPresetEnv = require('postcss-preset-env'),
   ReactRefreshTypescript = require('react-refresh-typescript'),
   //runs TypeScript type checker on a separate process, which speeds up webpack compilation time.
   ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin'),
@@ -162,15 +163,11 @@ module.exports = (env, options) => {
                   ident: 'postcss',
                   plugins: [
                     'postcss-flexbugs-fixes',
-                    [
-                      'postcss-preset-env',
-                      {
-                        autoprefixer: {
-                          flexbox: 'no-2009',
-                        },
-                        stage: 3,
-                      },
-                    ],
+                    postcssPresetEnv({
+                      stage: 3,
+                      //uncomment the following if you want to prefix grid properties
+                      // autoprefixer: { grid: true },
+                    }),
                     // Adds PostCSS Normalize as the reset css with default options,
                     // so that it honors browserslist config in package.json
                     // which in turn let's users customize the target behavior as per their needs.
