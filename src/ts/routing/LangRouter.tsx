@@ -1,6 +1,8 @@
 import { createContext, useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+//interfaces
+import { RouteWithChildrenInterface } from '@/ts/routing/RoutingInterfaces';
 //constants
 import { isAuthenticated } from '@/ts/constants/Helpers';
 //routing helpers
@@ -94,6 +96,14 @@ const LangRouter = () => {
     }
   };
 
+  const renderRouteWithChildren = (routes: RouteWithChildrenInterface[]) => {
+    return routes.map((route, index) => (
+      <Route key={index} path={route.path(locale)} element={route.element}>
+        {route.children && renderRouteWithChildren(route.children)}
+      </Route>
+    ));
+  };
+
   if (isLoading) {
     return (
       <div className="loader-wrapper">
@@ -106,18 +116,7 @@ const LangRouter = () => {
     <LocaleContext.Provider value={{ locale, setLocale: updateLocale }}>
       <Routes>
         <Route path={`/${locale}`} element={<App />}>
-          {allRoutes.map((route, routeIndex) => (
-            <Route key={routeIndex} path={route.path(locale)} element={route.element}>
-              {route.children &&
-                route.children.map((childRoute, childIndex) => (
-                  <Route
-                    key={childIndex}
-                    path={childRoute.path(locale)}
-                    element={childRoute.element}
-                  />
-                ))}
-            </Route>
-          ))}
+          {renderRouteWithChildren(allRoutes)}
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
