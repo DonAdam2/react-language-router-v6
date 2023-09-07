@@ -21,7 +21,8 @@
       "@/ts/*": ["./src/ts/*"],
       "@/scss/*": ["./src/scss/*"],
       "@/public/*": ["./public/*"]
-    }
+    },
+    "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": ["src"]
 }
