@@ -6,7 +6,7 @@ import { RouteWithChildrenInterface } from '@/ts/routing/RoutingInterfaces';
 //constants
 import { isAuthenticated } from '@/ts/constants/Helpers';
 //routing helpers
-import { getDefaultLanguage } from '@/ts/routing/routingConstants/RoutingHelpers';
+import { availableLocales, getDefaultLanguage } from '@/ts/routing/routingConstants/RoutingHelpers';
 //routes
 import { getHomePageUrl, getLoginPageUrl } from '@/ts/routing/routingConstants/AppUrls';
 import { allRoutes } from '@/ts/routing/routingConstants/RoutesConfig';
@@ -27,10 +27,7 @@ const LangRouter = () => {
   const { i18n } = useTranslation(),
     { pathname, search, hash } = useLocation(),
     navigate = useNavigate(),
-    availableLocales = ['en', 'ar'],
-    defaultLocale = (
-      getDefaultLanguage() === 'en' || getDefaultLanguage() === 'ar' ? getDefaultLanguage() : 'en'
-    ) as string,
+    defaultLocale = getDefaultLanguage({ fallbackLocal: 'en' }) as string,
     pathnameLocale = pathname.substring(1, 3).toLowerCase(),
     [locale, setLocale] = useState(defaultLocale),
     loaderTimerRef = useRef<any>(),
