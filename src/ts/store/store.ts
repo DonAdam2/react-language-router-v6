@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 import { configureStore } from '@reduxjs/toolkit';
 //root reducer
 import { reduxSlices } from './rootReducer';

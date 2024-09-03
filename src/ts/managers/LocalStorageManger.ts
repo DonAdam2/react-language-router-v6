@@ -11,6 +11,7 @@ class LocalStorageManager {
     try {
       return decryptData(value);
     } catch (e) {
+      console.log(e);
       return value;
     }
   }
