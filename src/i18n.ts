@@ -1,10 +1,5 @@
-import LanguageDetector from 'i18next-browser-languagedetector';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-//managers
-import LocalStorageManager from '@/ts/managers/LocalStorageManger';
-//constants
-import { LocalStorageKeys } from '@/ts/constants/Constants';
 //translations
 import translationAr from '@/public/translations/ar.json';
 import translationEn from '@/public/translations/en.json';
@@ -18,17 +13,7 @@ const resources = {
   },
 };
 
-const languageDetector = new LanguageDetector();
-languageDetector.addDetector({
-  name: 'customLocalStorageDetector',
-
-  lookup() {
-    return LocalStorageManager.getItem(LocalStorageKeys.I18_NEXT_LNG);
-  },
-});
-
 i18n
-  .use(languageDetector)
   .use(initReactI18next) // bind react-i18next to the instance
   .init({
     supportedLngs: ['ar', 'ar-SA', 'en', 'en-US'],

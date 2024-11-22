@@ -1,26 +1,38 @@
 //constants
 import { decryptData, encryptData } from '../constants/Helpers';
+//managers
+import SharedManager, { AvailableStorages } from '@/ts/managers/SharedManager';
 
 class SessionStorageManager {
   static setItem(key: string, data: any) {
-    const encryptedValue = encryptData(data);
-    sessionStorage.setItem(key, JSON.stringify(encryptedValue));
-  }
-  static getItem(key: string) {
-    const value = sessionStorage.getItem(key);
-    try {
-      return decryptData(value);
-    } catch (e) {
-      return value;
+    if (SharedManager.isStorageAvailable(AvailableStorages.sessionStorage)) {
+      const encryptedValue = encryptData(data);
+      sessionStorage.setItem(key, JSON.stringify(encryptedValue));
     }
   }
+  static getItem(key: string) {
+    if (SharedManager.isStorageAvailable(AvailableStorages.sessionStorage)) {
+      const value = sessionStorage.getItem(key);
+      try {
+        return decryptData(value);
+      } catch (e) {
+        return value;
+      }
+    }
+    return undefined;
+  }
   static removeItem(key: string) {
-    const value = this.getItem(key);
-    sessionStorage.removeItem(key);
-    return value;
+    if (SharedManager.isStorageAvailable(AvailableStorages.sessionStorage)) {
+      const value = this.getItem(key);
+      sessionStorage.removeItem(key);
+      return value;
+    }
+    return undefined;
   }
   static clear() {
-    sessionStorage.clear();
+    if (SharedManager.isStorageAvailable(AvailableStorages.sessionStorage)) {
+      sessionStorage.clear();
+    }
   }
 }
 
