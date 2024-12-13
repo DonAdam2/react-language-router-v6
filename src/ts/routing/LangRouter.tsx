@@ -30,7 +30,7 @@ const LangRouter = () => {
     defaultLocale = getDefaultLanguage({ fallbackLocal: 'en' }) as string,
     pathnameLocale = pathname.substring(1, 3).toLowerCase(),
     [locale, setLocale] = useState(defaultLocale),
-    loaderTimerRef = useRef<any>(),
+    loaderTimerRef = useRef<any>(null),
     [isLoading, setIsLoading] = useState(true);
   //set body direction
   document.body.dir = i18n.dir(i18n.language);

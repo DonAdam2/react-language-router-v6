@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 //interfaces
 import { RestrictedRouteInterface } from '../RoutingInterfaces';
 //components
