@@ -61,7 +61,7 @@ const LangRouter = () => {
       setLanguageHandler(lang);
     }
     // eslint-disable-next-line
-  }, [locale]);
+  }, [pathnameLocale, defaultLocale]);
 
   const setLanguageHandler = (lang: string) => {
     //set language attribute on HTML element
