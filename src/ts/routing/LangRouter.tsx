@@ -67,15 +67,17 @@ const LangRouter = () => {
     //set language attribute on HTML element
     document.documentElement.setAttribute('lang', lang);
 
-    if (lang === 'en') {
-      i18n.changeLanguage('en-US');
-    } else {
-      i18n.changeLanguage('ar-SA');
-    }
+    (async () => {
+      if (lang === 'en') {
+        await i18n.changeLanguage('en-US');
+      } else {
+        await i18n.changeLanguage('ar-SA');
+      }
+    })();
   };
 
   const updateLocale = (newLocale: string) => {
-    const newPath = `/${newLocale}` + pathname.substring(3);
+    const newPath = `/${newLocale}${pathname.substring(3)}`;
 
     if (locale !== newLocale) {
       if (newPath === `/${newLocale}/` || newPath === `/${newLocale}` || pathname === '/') {

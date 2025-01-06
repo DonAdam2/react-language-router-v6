@@ -8,7 +8,6 @@ const path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
   EsLintPlugin = require('eslint-webpack-plugin'),
-  ReactRefreshTypescript = require('react-refresh-typescript'),
   //runs TypeScript type checker on a separate process, which speeds up webpack compilation time.
   ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin'),
   //constants
@@ -83,33 +82,25 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
-          options: {
-            // This is a feature of `babel-loader` for webpack (not Babel itself).
-            // It enables caching results in ./node_modules/.cache/babel-loader/
-            // directory for faster rebuilds.
-            cacheDirectory: true,
-            cacheCompression: false,
-            compact: !isDevelopment,
-          },
-        },
-        {
-          test: /\.(ts|tsx)$/,
-          exclude: /node_modules/,
-          loader: 'ts-loader',
-          options: {
-            getCustomTransformers: () => ({
-              //enable react refresh in development only
-              before: [isDevelopment && ReactRefreshTypescript()].filter(Boolean),
-            }),
-            /*
-             * ts-loader won't work with HMR unless transpileOnly is set to true
-             * this option is set to true by default because we are using (fork-ts-checker-webpack-plugin)
-             */
-            //transpileOnly: isDevelopment,
-          },
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                // This is a feature of `babel-loader` for webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // directory for faster rebuilds.
+                cacheDirectory: true,
+                cacheCompression: false,
+                compact: !isDevelopment,
+              },
+            },
+            {
+              //required for ForkTsCheckerWebpackPlugin
+              loader: 'ts-loader',
+            },
+          ],
         },
         {
           test: /\.(jpe?g|svg|png|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
