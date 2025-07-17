@@ -5,9 +5,11 @@ import renderWithProviders from '@/jest/mocks/RenderWithProviders';
 import App from './App';
 
 describe('App Component', () => {
-  test('renders webpack react boilerplate', async () => {
+  test('renders app with header', () => {
     renderWithProviders(<App />);
-    const title = await screen.findByRole('heading', { name: /webpack react boilerplate/i });
-    expect(title).toBeInTheDocument();
+    const loginLink = screen.getByText('Login');
+    const aboutUsLink = screen.getByText('About us');
+    expect(loginLink).toBeInTheDocument();
+    expect(aboutUsLink).toBeInTheDocument();
   });
 });

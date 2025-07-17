@@ -23,7 +23,7 @@ module.exports = {
     '^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)': '<rootDir>/transforms/fileTransform.js',
   },
   transformIgnorePatterns: [
-    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$',
+    '[/\\\\]node_modules[/\\\\](?!(react-error-boundary)).+\\.(js|jsx|mjs|cjs|ts|tsx)$',
     '^.+\\.(css|sass|scss)$',
   ],
   modulePaths: [],

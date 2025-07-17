@@ -5,9 +5,11 @@ import renderWithProviders from '@/jest/mocks/RenderWithProviders';
 import Header from './Header';
 
 describe('<Header />', () => {
-  test('renders component name (header)', () => {
+  test('renders header links', () => {
     renderWithProviders(<Header />);
-    const title = screen.getByText(/header/i);
-    expect(title).toBeInTheDocument();
+    const loginLink = screen.getByText('Login');
+    const aboutUsLink = screen.getByText('About us');
+    expect(loginLink).toBeInTheDocument();
+    expect(aboutUsLink).toBeInTheDocument();
   });
 });
