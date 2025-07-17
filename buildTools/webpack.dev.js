@@ -11,7 +11,7 @@ const { merge } = require('webpack-merge'),
 module.exports = (env, options) => {
   return merge(common(env, options), {
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'eval',
     //required for hot reload
     target: 'web',
     devServer: {
@@ -34,10 +34,7 @@ module.exports = (env, options) => {
         'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
       },
       client: {
-        overlay: {
-          errors: true,
-          warnings: false,
-        },
+        overlay: false,
       },
     },
     plugins: [
