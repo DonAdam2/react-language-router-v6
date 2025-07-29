@@ -194,8 +194,6 @@ module.exports = (env, options) => {
       new EsLintPlugin({
         extensions: ['.js', '.ts', '.tsx', '.json'],
         context: PATHS.src,
-        cache: true,
-        cacheLocation: path.resolve('node_modules/.cache/.eslintcache'),
         // Development-specific options
         failOnError: !isDevelopment,
         failOnWarning: false,
