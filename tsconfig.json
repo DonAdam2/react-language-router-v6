@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2018",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,12 +17,11 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@/jest/*": ["./jest/*"],
       "@/ts/*": ["./src/ts/*"],
       "@/scss/*": ["./src/scss/*"],
       "@/public/*": ["./public/*"]
     },
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "types": ["node"]
   },
   "include": ["src"]
 }

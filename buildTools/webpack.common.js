@@ -73,7 +73,6 @@ module.exports = (env, options) => {
       extensions: ['.js', '.ts', '.tsx', '.json'],
       // declaring aliases to reduce the use of relative path
       alias: {
-        '@/jest': PATHS.jest,
         '@/ts': `${PATHS.src}/ts`,
         '@/scss': `${PATHS.src}/scss`,
         '@/public': PATHS.public,
@@ -155,16 +154,9 @@ module.exports = (env, options) => {
                   return {
                     ident: 'postcss',
                     plugins: [
-                      'postcss-flexbugs-fixes',
                       postcssPresetEnv({
                         stage: 0,
-                        //uncomment the following if you want to prefix grid properties
-                        // autoprefixer: { grid: true },
                       }),
-                      // Adds PostCSS Normalize as the reset css with default options,
-                      // so that it honors browserslist config in package.json
-                      // which in turn let's users customize the target behavior as per their needs.
-                      'postcss-normalize',
                     ],
                   };
                 },

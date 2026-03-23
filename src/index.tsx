@@ -5,8 +5,6 @@ import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 //import meta image
 import '@/public/assets/images/metaImage.jpg';
-// required for babel polyfills
-import 'regenerator-runtime/runtime';
 //store configuration
 import store from '@/ts/store/store';
 //styles

@@ -11,8 +11,7 @@
   "description": "Webpack react boilerplate with typescript",
   "main": "index.js",
   "browserslist": [
-    "ie >= 11",
-    "last 2 version"
+    "last 2 versions"
   ],
   "scripts": {
     "start": "node scripts/start.js",
@@ -26,8 +25,6 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/eslint-parser": "7.28.6",
-    "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/plugin-transform-runtime": "7.29.0",
     "@babel/preset-env": "7.29.2",
     "@babel/preset-react": "7.28.5",
     "@babel/preset-typescript": "7.28.5",
@@ -46,7 +43,6 @@
     "browserslist": "4.28.1",
     "clean-webpack-plugin": "4.0.0",
     "cli-color": "2.0.4",
-    "core-js": "3.49.0",
     "css-loader": "7.1.4",
     "css-minimizer-webpack-plugin": "8.0.0",
     "detect-port": "2.1.0",
@@ -64,9 +60,7 @@
     "mini-css-extract-plugin": "2.10.1",
     "plop": "4.0.5",
     "postcss": "8.5.8",
-    "postcss-flexbugs-fixes": "5.0.2",
     "postcss-loader": "8.2.1",
-    "postcss-normalize": "13.0.1",
     "postcss-preset-env": "11.2.0",
     "prettier": "3.8.1",
     "prompts": "2.4.2",
@@ -74,7 +68,6 @@
     "react-dom": "19.2.4",
     "react-refresh": "0.18.0",
     "redux-logger": "3.0.6",
-    "regenerator-runtime": "0.14.1",
     "resolve-url-loader": "5.0.0",
     "rework": "1.0.1",
     "rework-visit": "1.0.0",
@@ -101,6 +94,6 @@
     "react-error-boundary": "6.1.1",
     "react-i18next": "16.6.2",
     "react-redux": "9.2.0",
-    "react-router-dom": "7.13.1"
+    "react-router-dom": "7.13.2"
   }
 }
