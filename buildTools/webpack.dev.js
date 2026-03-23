@@ -2,6 +2,7 @@ process.env.NODE_ENV = 'development';
 
 // the following 2 lines is to merge common webpack configurations with this file
 const { merge } = require('webpack-merge'),
+  { HotModuleReplacementPlugin } = require('webpack'),
   common = require('./webpack.common.js'),
   //enables fast refresh (this is the new feature which overrides hot reloading)
   ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'),
@@ -38,6 +39,7 @@ module.exports = (env, options) => {
       },
     },
     plugins: [
+      new HotModuleReplacementPlugin(),
       // enables fast refresh
       new ReactRefreshWebpackPlugin(),
     ],

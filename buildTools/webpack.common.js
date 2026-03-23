@@ -150,23 +150,23 @@ module.exports = (env, options) => {
             {
               loader: 'postcss-loader',
               options: {
-                postcssOptions: {
-                  ident: 'postcss',
-                  plugins: [
-                    'postcss-flexbugs-fixes',
-                    [
-                      'postcss-preset-env',
-                      {
+                postcssOptions: async () => {
+                  const postcssPresetEnv = (await import('postcss-preset-env')).default;
+                  return {
+                    ident: 'postcss',
+                    plugins: [
+                      'postcss-flexbugs-fixes',
+                      postcssPresetEnv({
                         stage: 0,
                         //uncomment the following if you want to prefix grid properties
                         // autoprefixer: { grid: true },
-                      },
+                      }),
+                      // Adds PostCSS Normalize as the reset css with default options,
+                      // so that it honors browserslist config in package.json
+                      // which in turn let's users customize the target behavior as per their needs.
+                      'postcss-normalize',
                     ],
-                    // Adds PostCSS Normalize as the reset css with default options,
-                    // so that it honors browserslist config in package.json
-                    // which in turn let's users customize the target behavior as per their needs.
-                    'postcss-normalize',
-                  ],
+                  };
                 },
                 sourceMap: isDevelopment,
               },

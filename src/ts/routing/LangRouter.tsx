@@ -29,11 +29,45 @@ const LangRouter = () => {
     navigate = useNavigate(),
     defaultLocale = getDefaultLanguage({ fallbackLocal: 'en' }) as string,
     pathnameLocale = pathname.substring(1, 3).toLowerCase(),
-    [locale, setLocale] = useState(defaultLocale),
+    locale = availableLocales.includes(pathnameLocale) ? pathnameLocale : defaultLocale,
     loaderTimerRef = useRef<any>(null),
     [isLoading, setIsLoading] = useState(true);
+
+  const setLanguageHandler = (lang: string) => {
+    //set language attribute on HTML element
+    document.documentElement.setAttribute('lang', lang);
+
+    (async () => {
+      if (lang === 'en') {
+        await i18n.changeLanguage('en-US');
+      } else {
+        await i18n.changeLanguage('ar-SA');
+      }
+    })();
+  };
+
+  const updateLocale = (newLocale: string) => {
+    const newPath = `/${newLocale}${pathname.substring(3)}`;
+
+    if (locale !== newLocale) {
+      if (newPath === `/${newLocale}/` || newPath === `/${newLocale}` || pathname === '/') {
+        navigate(getHomePageUrl(newLocale));
+      } else {
+        navigate(`${newPath}${hash}${search}`);
+      }
+    } else if (newPath === `/${newLocale}/` || newPath === `/${newLocale}` || pathname === '/') {
+      if (isAuthenticated()) {
+        navigate(getHomePageUrl(newLocale));
+      } else {
+        navigate(getLoginPageUrl(newLocale));
+      }
+    }
+  };
+
   //set body direction
-  document.body.dir = i18n.dir(i18n.language);
+  useEffect(() => {
+    document.body.dir = i18n.dir(i18n.language);
+  }, [i18n]);
 
   useEffect(() => {
     loaderTimerRef.current = setTimeout(() => {
@@ -62,38 +96,6 @@ const LangRouter = () => {
     }
     // eslint-disable-next-line
   }, [pathnameLocale, defaultLocale]);
-
-  const setLanguageHandler = (lang: string) => {
-    //set language attribute on HTML element
-    document.documentElement.setAttribute('lang', lang);
-
-    (async () => {
-      if (lang === 'en') {
-        await i18n.changeLanguage('en-US');
-      } else {
-        await i18n.changeLanguage('ar-SA');
-      }
-    })();
-  };
-
-  const updateLocale = (newLocale: string) => {
-    const newPath = `/${newLocale}${pathname.substring(3)}`;
-
-    if (locale !== newLocale) {
-      if (newPath === `/${newLocale}/` || newPath === `/${newLocale}` || pathname === '/') {
-        navigate(getHomePageUrl(newLocale));
-      } else {
-        navigate(`${newPath}${hash}${search}`);
-      }
-      setLocale(newLocale);
-    } else if (newPath === `/${newLocale}/` || newPath === `/${newLocale}` || pathname === '/') {
-      if (isAuthenticated()) {
-        navigate(getHomePageUrl(newLocale));
-      } else {
-        navigate(getLoginPageUrl(newLocale));
-      }
-    }
-  };
 
   const renderRouteWithChildren = (routes: RouteWithChildrenInterface[]) => {
     return routes.map((route, index) => (
